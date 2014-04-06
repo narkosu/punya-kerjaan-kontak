@@ -18,7 +18,7 @@ class ProductsController extends Controller
 					'users' => array('*'),
 					),
 				array('allow',
-					'actions'=>array('admin','delete','create','update', 'view'),
+					'actions'=>array('admin','company','delete','create','update', 'view'),
 					'users' => array('@'),
 					),
 				array('deny',  // deny all other users
@@ -65,6 +65,8 @@ class ProductsController extends Controller
 
 	public function actionUpdate($id, $return = null)
 	{
+      
+    $this->layout = '//layouts/main_account';  
 		$model= Products::model()->find("product_id = '".$id."' AND store_id ='".Yii::app()->user->getState("storeLogin")->id."'");
 
 		$this->performAjaxValidation($model);
@@ -145,12 +147,13 @@ class ProductsController extends Controller
 			'store'=>$store
 		));
 	}
-	/**
+	
+  /**
 	 * Manages all models.
 	 */
 	public function actionAdmin()
 	{
-		
+	  $this->layout='//layouts/main_account';	
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('store_id',Yii::app()->user->getState("storeLogin")->id);
@@ -158,11 +161,31 @@ class ProductsController extends Controller
 		$model = Products::model()->findAll($criteria);
 		
 
-		$this->render('admin',array(
+		$this->render('adminproduct',array(
 			'model'=>$model,
 		));
 	}
 
+  
+  /**
+	 * companies product
+	 */
+	public function actionCompany()
+	{
+	  $this->layout='//layouts/main_account';	
+		$criteria=new CDbCriteria;
+    echo Yii::app()->user->getState("storeLogin")->id;
+		$criteria->compare('store_id',Yii::app()->user->getState("storeLogin")->id);
+
+		$model = Products::model()->findAll($criteria);
+		
+
+		$this->render('adminproduct',array(
+			'model'=>$model,
+		));
+	}
+  
+  
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.

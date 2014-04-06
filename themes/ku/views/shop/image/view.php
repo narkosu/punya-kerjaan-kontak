@@ -13,6 +13,7 @@ if($model->filename)
 				? Shop::module()->imageWidthThumb 
 				: Shop::module()->imageWidth;
 	}
+
 echo CHtml::image($path,
 		$model->title,
 		array(
@@ -21,7 +22,6 @@ echo CHtml::image($path,
 			'width' => $width)
 		); ?>
 <?php 
-
-if(Shop::module()->useWithYum && Yii::app()->user->isAdmin()) 
+if( Shop::module()->useWithYum && Yii::app()->user->isAdmin()) 
 	echo CHtml::link(Yii::t('ShopModule.shop', 'Delete Image'),
 			array('delete', 'id' => $model->id)); ?>

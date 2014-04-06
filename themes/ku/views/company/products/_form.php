@@ -32,6 +32,7 @@ function renderVariation($variation, $i) {
 
 return $str;
 } ?>
+
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -45,13 +46,15 @@ return $str;
 <fieldset>
 <legend> <?php echo Shop::t('Article Information'); ?> </legend>
 <div class="row">
-<?php echo $form->labelEx($model,'category_id'); ?>
-<?php $this->widget('application.modules.shop.components.Relation', array(
+<?php // echo $form->labelEx($model,'category_id'); ?>
+<?php /*$this->widget('application.modules.shop.components.Relation', array(
 			'model' => $model,
 			'relation' => 'category',
 			'fields' => 'title',
 			'showAddButton' => false)); ?>
-<?php echo $form->error($model,'category_id'); ?>
+<?php echo $form->error($model,'category_id'); 
+ * ?>
+ */ ?>
 </div>
 
 <div class="row">
@@ -116,19 +119,17 @@ return $str;
 					'//shop/products/update',
 					'return' => 'product',
 					'id' => $model->product_id))); ?>
-
-
 				</fieldset>
 
 <?php } ?>
 
 
-				<div class="row buttons">
-				<?php echo CHtml::submitButton($model->isNewRecord ?
-						Yii::t('ShopModule.shop', 'Create') 
-						: Yii::t('ShopModule.shop', 'Save')); ?>
-				</div>
+<div class="row buttons">
+<?php echo CHtml::submitButton($model->isNewRecord ?
+    Yii::t('ShopModule.shop', 'Create') 
+    : Yii::t('ShopModule.shop', 'Save')); ?>
+</div>
 
-				<?php $this->endWidget(); ?>
+<?php $this->endWidget(); ?>
 
-				</div><!-- form -->
+</div><!-- form -->

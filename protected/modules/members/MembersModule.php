@@ -28,6 +28,7 @@ class MembersModule extends CWebModule
 			/*if ( Yii::app()->user->isGuest ){
 				Yii::app()->request->redirect(Yii::app()->homeUrl);
 			}*/
+        CModule::setParams(array());
 			return true;
 		}
 		else

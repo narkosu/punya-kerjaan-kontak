@@ -1,7 +1,7 @@
 <?php 
 
-$model = new Products();
-
+//$model = new Products();
+/*
 $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'products-grid',
 	'dataProvider'=>$model->search(),
@@ -30,6 +30,25 @@ $this->widget('zii.widgets.grid.CGridView', array(
 )
 ); 
 
-
 echo CHtml::link(Shop::t('Create a new Product'), array('products/create'));
+ * 
+ */
 ?>
+<div>
+    <table class="table">
+        <?php foreach ($model as $row){ ?>
+        <tr>
+        <td><?php echo $row->title?></td>
+        <td><?php echo $row->price?></td>
+        <td><a href="<?php echo Yii::app()->createUrl("/shop/image/product/product_id/".$row->product_id)?>">Images</a></td>
+        <td>
+            <a href="<?php echo Yii::app()->createUrl("/shop/products/update",
+			array("id" => $row->product_id))?>">Edit</a>
+            <a href="<?php echo Yii::app()->createUrl("/shop/products/delete",
+			array("id" => $row->product_id))?>">Delete</a>
+            
+        </td>
+        </tr>
+        <?php } ?>
+    </table>
+</div>

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This is the model class for table "shop_address".
+ * This is the model class for table "Profile".
  *
  * The followings are the available columns in table 'shop_address':
  * @property integer $id
@@ -19,7 +19,7 @@ class Profile extends CActiveRecord
 
 	public static function isEmpty($vars) {
 		return 
-			$vars['street'] == '' 
+			$vars['address'] == '' 
 			|| $vars['zipcode'] == '' 
 			|| $vars['city'] == '' 
 			|| $vars['country'] == ''; 
@@ -27,7 +27,7 @@ class Profile extends CActiveRecord
 
 	public function renderAddress() {
 		echo $this->firstname . ' ' . $this->lastname . '<br />';
-		echo $this->street . '<br />';
+		echo $this->address . '<br />';
 		echo $this->zipcode . ' ' . $this->city . '<br />';
 		echo $this->country;
 	}
@@ -41,8 +41,8 @@ class Profile extends CActiveRecord
 	{
 		return array(
 			array('firstname, lastname,user_id', 'required'),
-			array('firstname, lastname, street, zipcode, city, country', 'length', 'max'=>255),
-			array('id, firstname, lastname, street, zipcode, city, country', 'safe', 'on'=>'search'),
+			array('firstname, lastname, address, zipcode, city, country', 'length', 'max'=>255),
+			array('id, firstname, lastname, address, zipcode, city, country', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -54,6 +54,7 @@ class Profile extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+        
 		);
 	}
 
@@ -63,7 +64,6 @@ class Profile extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
 			'firstname' => Yii::t('ShopModule.shop', 'Firstname'),
 			'lastname' => Yii::t('ShopModule.shop', 'Lastname'),
 			'street' => Shop::t('Street'),

@@ -149,13 +149,15 @@ return array(
 				/*'advisor/<action:\w+>'=>'company/default/<action>',
 				'usaha/<action:\w+>'=>'company/default/<action>',
 				'advisor/<action:\w+>/'=>'company/default/<action>/',*/
-				'company/<action:\w+>'=>'company/factory/<action>',
+				'company/setting'=>'company/factory/updateMyProfile',
+				'company/produk'=>'shop/products/company',
+        'company/<action:\w+>'=>'company/factory/<action>',
 				'company/<action:\w+>/<id:\w+>'=>'company/factory/<action>/<id:\w+>',
 				
 				//'advisor/<controller:\w+>/<action:\w+>'=>'company/<controller>/<action>',
 				//'company/<action:\w+>/'=>'company/default/<action>/',
         'setting'=>'members/setting',
-				'photo/view/<id:\w+>/<version:\w+>/<namefile>'=>'photo/view/id/<id>/version/<version>',
+        'photo/view/<id:\w+>/<version:\w+>/<namefile>'=>'photo/view/id/<id>/version/<version>',
 				'@<id:\w+>'=>'members/profile/index/user/<id>', // user
 				'@<id:\w+>/produk'=>'shop/products/store/store_id/<id>', // user
 				'produk'=>'shop/products', // user

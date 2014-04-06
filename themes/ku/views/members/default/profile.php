@@ -13,24 +13,17 @@
         Kontak
         </div>
         <?php if ( Yii::app()->user->name === $user->username ) { ?>
-        <div style="float:right;">Edit</div>
+        <div style="float:right;"><a href="<?php echo Yii::app()->createUrl('setting')?>">Edit</a></div>
         <?php } ?>
         <div style="clear:both" class="clearfix"></div>
     </div>
 			<div style="clear:both;float:left;width:350px;">
 			<table class="profileContactTable">
 				<tbody>
-					<Tr>
-						<td>Email</td>
-						<td>Kirim Pesan</td>
-					</Tr>
-					<Tr>
-						<td>Telepon</td>
-						<td><?php echo $data->factory->telp_number?></td>
-					</Tr>
+					
 					<Tr>
 						<td>Address</td>
-						<td><?php echo $data->factory->address?></td>
+						<td><?php echo $user->profile.' '.$user->id?></td>
 					</Tr>
 				</tbody>
 			</table>

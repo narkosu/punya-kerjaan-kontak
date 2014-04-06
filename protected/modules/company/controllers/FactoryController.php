@@ -5,6 +5,35 @@ class FactoryController extends Controller
 	
 	public $layout='//layouts/maincompany';
 	public $_params;
+  
+  public function filters()
+	{
+		return array(
+			'accessControl',
+		);
+	}	
+
+	public function accessRules() {
+		return array(
+				array('allow',
+					'actions'=>array('baru',
+              'view','products','detailproduct'),
+					'users' => array('*'),
+					),
+        array('allow',
+					'actions'=>array('UpdateMyProfile'),
+					'users' => array('@'),
+					),
+				array('allow',
+					'actions'=>array('admin','delete', 'view', 'slip', 'invoice'),
+					'users' => array('admin'),
+					),
+				array('deny',  // deny all other users
+						'users'=>array('*'),
+						),
+				);
+	}
+  
 	public function actionIndex()
 	{
 		$this->render('index',array('dotoc'=>'prefetch'));
@@ -76,6 +105,52 @@ class FactoryController extends Controller
 		$this->render('factory',array('model'=>$model));
 	}
 	
+  public function actionUpdateMyProfile()
+	{
+    $this->layout = '//layouts/main_account';
+    $isNew = false;
+    $myFactoryId = UserFactory::model()->find('user_id = :uid', array(':uid'=> Yii::app()->user->id));  
+    if ( $myFactoryId ){
+        $model = Factory::model()->findByPk($myFactoryId->company_id);
+    } else {
+        $model = new Factory;
+        $isNew = true;
+    }
+
+		// uncomment the following code to enable ajax-based validation
+		
+		if(isset($_POST['ajax']) && $_POST['ajax']==='factory-factory-form')
+		{
+			echo CActiveForm::validate($model);
+			Yii::app()->end();
+		}
+		
+
+		if(isset($_POST['Factory']))
+		{
+			$model->attributes = $_POST['Factory'];
+      
+			if( $model->validate() )
+			{
+				// form inputs are valid, do something here
+				$model->save();
+        
+        /* create user factory */
+        if ( $isNew ){
+            $userFactory = new \UserFactory;
+            $userFactory->user_id = Yii::app()->user->id;
+            $userFactory->company_id = $model->id;
+            $userFactory->level_as = 'admin';
+            $userFactory->status = 'active';
+            $userFactory->save();
+        }
+            
+			}
+		}
+    
+		$this->render('myfactory',array('model'=>$model));
+	}
+  
 	public function actionDelete($id)
 	{
 		if ( !empty($id) && ( !Yii::app()->user->isGuest )  ) {

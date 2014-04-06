@@ -461,18 +461,19 @@ h6 {
   color: #bfbfbf;
   text-transform: uppercase;
 }
+/*
 ul, ol {
   margin: 0 0 18px 25px;
-}
+}*/
 ul ul,
 ul ol,
 ol ol,
 ol ul {
   margin-bottom: 0;
 }
-ul {
+/*ul {
   list-style: disc;
-}
+}*/
 ol {
   list-style: decimal;
 }

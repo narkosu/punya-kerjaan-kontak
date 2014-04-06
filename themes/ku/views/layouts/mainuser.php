@@ -19,12 +19,14 @@
 		  
 		 <div style="height:auto;width:100%;overflow: hidden;" class="useravatar">
 			<?php
-				$this->widget('ext.imageSelect.ImageSelect',  array(
+      if ( $this->getParams() ){
+				/*$this->widget('ext.imageSelect.ImageSelect',  array(
 					'path'=> ( $this->getParams()->picture_id ? Yii::app()->baseUrl.'/images/'.Yii::app()->image->renderVersion($this->getParams()->picture_id,'avatar')->urlpath : ''),
 					'alt'=>'alt text',
 					'uploadUrl'=>Yii::app()->createUrl('members/profile/UploadAvatar'),
 					'htmlOptions'=>array()
-				));
+				));*/
+      }
 			 ?>
 		  </div>
 		  

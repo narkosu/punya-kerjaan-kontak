@@ -29,7 +29,21 @@ class SettingController extends Controller
 	
 	public function actionIndex()
 	{
-		$model = User::model()->findByPk(Yii::app()->user->id);
+      
+		$model = Profile::model()->findByPk(Yii::app()->user->id);
+    if ( !$model ){
+        $model = new Profile;
+    }
+    if ( !empty($_POST['Profile']) ) {
+        $model->attributes = $_POST['Profile'];
+        $model->user_id = Yii::app()->user->id;
+        if ( $model->save() ){
+            echo 'ok';
+        }else{
+          echo 'error';
+
+        } 
+    }
 		$this->render('profile',array('model'=>$model));
 	}
 	

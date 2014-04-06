@@ -82,6 +82,16 @@ class ImageController extends Controller
 		$this->render('admin',array( 'images'=>$images, 'product' => $product));
 	}
 
+  
+  public function actionProduct()
+	{
+    $this->layout = '//layouts/main_account';  
+		$product = Products::model()->findByPk($_GET['product_id']);
+
+		$images = $product->images;
+
+		$this->render('productimage',array( 'images'=>$images, 'product' => $product));
+	}
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.

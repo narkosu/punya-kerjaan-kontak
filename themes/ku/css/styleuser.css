@@ -35,7 +35,7 @@ body {
 }
 /* global */
 #wrapper {
-	background: #fff;
+	background: #eee;
   width: 100%;
 	margin: 0 auto;
 }
@@ -84,6 +84,10 @@ body {
     width:200px;
     margin-left: 10px;
     margin-top: 10px;
+    margin: 10px 0px 10px 10px;
+    border: 1px solid #d8d8d8;
+    padding: 10px 0px;
+    background: #fff;
 }
 
 #main-container{
@@ -450,10 +454,14 @@ input.btnfactory:hover { color: #c11e39; }
 
 /******************************* content *************************/
 #container{
-  float:left;
-  width: 665px;
-  margin-top:10px;
-  margin-left:10px;
+    float:left;
+    width: 665px;
+    margin-top:10px;
+  
+    margin-left: 10px;
+    border: 1px solid #d8d8d8;
+    padding: 10px;
+    background: #fff;
 }
 
 
