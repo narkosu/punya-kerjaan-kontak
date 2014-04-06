@@ -15,15 +15,33 @@
 <!-- wrapper start -->
 <div id="wrapper">
 	 <div id="left-container">
-		  <div style="height:auto;width:100%;overflow: hidden;">
+       <?php 
+       
+       
+       $urlLogo = ( !empty($this->getParams()->picture_id) ? 
+                        Yii::app()->baseUrl.'/images/'.
+                            Yii::app()->image
+                                ->renderVersion($this->getParams()->picture_id, 'logo')
+                                ->urlpath : ''); 
+       ?>
+		  <div style="height:<?php echo ( empty($urlLogo) ? '150px;background:#ddd' : 'auto') ?>;width:100%;overflow: hidden;">
 			<?php
-					
-				$this->widget('ext.imageSelect.ImageSelect',  array(
-					'path'=> ( $this->getParams()->picture_id ? Yii::app()->baseUrl.'/images/'.Yii::app()->image->renderVersion($this->getParams()->picture_id,'logo')->urlpath : ''),
-					'alt'=>'alt text',
-					'uploadUrl'=>Yii::app()->createUrl('company/factory/Uploadlogo/cid/'.$this->getParams()->company_id),
-					'htmlOptions'=>array()
-				));
+        if ( Yii::app()->user->getState('storeLogin')->company_id == $this->getParams()->company_id) {
+            $this->widget('ext.imageSelect.ImageSelect',  array(
+              'path'=> $urlLogo,
+              'text'=>'Change Logo',
+              'uploadUrl' => 
+                    Yii::app()->createUrl('company/factory/Uploadlogo/cid/'. $this->getParams()->company_id
+                ),
+              'htmlOptions'=>array()
+            ));
+        } else {
+        ?>    
+          <div style="text-align:center;">
+              <?php echo CHtml::image($urlLogo); ?>
+          </div>
+            
+        <?php }
 			 ?>
 			
 		  </div>

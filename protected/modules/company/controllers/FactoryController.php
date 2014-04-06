@@ -21,7 +21,7 @@ class FactoryController extends Controller
 					'users' => array('*'),
 					),
         array('allow',
-					'actions'=>array('UpdateMyProfile'),
+					'actions'=>array('UpdateMyProfile','Uploadlogo','coverpicture'),
 					'users' => array('@'),
 					),
 				array('allow',
@@ -188,7 +188,10 @@ class FactoryController extends Controller
                 'company_id'=>$id, 
                 'company_name'=>$data->factory->company_name, 
                 'picture_id'=>$data->factory->picture_id, 
-                'picture'=>$data->factory->picture));
+                'picture'=>$data->factory->picture,
+                'cover_picture_id'=>$data->factory->cover_picture_id, 
+                'cover_picture'=>$data->factory->cover_picture
+            ));
 		
 		//$data->factoryReview 	= AdvisorFactoryReview::model()->find("factory_id ='".$id."'");
 		//$criteria = new CDbCriteria();
@@ -337,7 +340,12 @@ class FactoryController extends Controller
   public function actionDetailproduct($cid,$id)
 	{
     $model = Factory::model()->findByPk($cid);
-		CModule::setParams(array('company_id'=>$cid,'picture'=>$model->picture,'picture_id'=>$model->picture_id));
+		CModule::setParams(array('company_id'=>$cid,
+        'cover_picture'=>$model->cover_picture,
+        'cover_picture_id'=>$model->cover_picture_id,
+        'picture'=>$model->picture,
+        'picture_id'=>$model->picture_id)
+        );
 		// uncomment the following code to enable ajax-based validation
     
 			$criteria = new CDbCriteria;
@@ -368,19 +376,57 @@ class FactoryController extends Controller
 	
 	public function actionUploadlogo($cid = ''){
 		if (empty($cid)) return;
-		
+		if (Yii::app()->user->getState('storeLogin')->company_id != $cid ){
+        return;
+    }
+    
+    $model = Factory::model()->findByPk($cid);
+    
+    $oldLogo_id         = $model->picture_id;
+    $oldLogo_picture    = $model->picture;
+    
 		$file = CUploadedFile::getInstanceByName('file');
 		
 		$group = 'logo';
 		$filename = 'logo_'.$cid.'_'.time();
 		$return = Yii::app()->image->save($file,$filename,'company',$group,$cid);
-		if ($return){
-			$model = Factory::model()->findByPk($cid);
-			$model->picture_id = $return->id;
+		if ( !empty($return) ){
+    	$model->picture_id = $return->id;
 			$model->picture = $filename.'-'.$return->id.'.'.$return->extension;
-			$model->save();
+			if ( !$model->save() ){
+         return;
+      }
 		}
 		// return the new file path
 		echo Yii::app()->baseUrl.'/photo/view/id/'.$return->id.'/version/logo';
+	}
+  
+  
+  public function actionCoverpicture($cid = ''){
+		if (empty($cid)) return;
+		if (Yii::app()->user->getState('storeLogin')->company_id != $cid ){
+        return;
+    }
+    
+    $model = Factory::model()->findByPk($cid);
+    
+    $cover_picture_id   = $model->cover_picture_id;
+    $cover_picture      = $model->cover_picture;
+    
+		$file = CUploadedFile::getInstanceByName('file');
+		
+		$group = 'cover';
+		$filename = 'cover_'.$cid.'_'.time();
+		$return = Yii::app()->image->save($file,$filename,'company',$group,$cid);
+		if ( !empty($return) ){
+    	$model->cover_picture_id = $return->id;
+			$model->cover_picture = $filename.'-'.$return->id.'.'.$return->extension;
+			if ( !$model->save() ){
+         return;
+      }
+		}
+    
+		// return the new file path
+		echo Yii::app()->baseUrl.'/photo/view/id/'.$return->id.'/version/cover';
 	}
 }

@@ -20,6 +20,7 @@ class Factory extends CActiveRecord
 {
 
 	public $AdvisorFactoryReview;
+  
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return Factory the static model class
@@ -45,11 +46,11 @@ class Factory extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('company_name', 'required'),
+			array('company_name,about_company', 'required'),
 			array('contact_person,picture, pre_contact, company_name, telp_number, mobile, fax, email, address, distric, city', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, user_created, picture_id, contact_person, pre_contact, company_name, telp_number, mobile, fax, email, address, distric, city', 'safe', 'on'=>'search'),
+			array('id, about_company, user_created, picture_id, contact_person, pre_contact, company_name, telp_number, mobile, fax, email, address, distric, city', 'safe', 'on'=>'search'),
 		);
 	}
 

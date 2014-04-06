@@ -126,4 +126,9 @@ class Allimage extends CActiveRecord
 	{
 		return !empty($this->path) ? $this->path.'/' : '';
 	}
+  
+  public function delete(){
+      //$src = Yii::app()->image->getURL($this->id,$version);
+  }
+  
 }

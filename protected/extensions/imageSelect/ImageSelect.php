@@ -40,9 +40,9 @@ class ImageSelect extends CWidget{
 		echo '<div style="text-align: center; position: relative;">';
 		echo '<div class="image-select-loading" id="image-select-loading-'.$this->id.'" style="display: none;">text</div>';
 		echo '<div id="div_image_select_'.$this->id.'" style="display: inline-block; margin-left: auto; margin-right: auto; position: relative; direction: ltr;width:100%;">';
-			echo CHtml::image($this->path, $this->alt, $this->htmlOptions);
+    echo CHtml::image($this->path, $this->alt, $this->htmlOptions);
 
-		echo '<a id="btn_change_image" class="image-select-edit" style="position: absolute; left: 20px; top: 20px;">'.$this->text.'</a>';
+		echo '<a id="btn_change_image" class="image-select-edit" style="position: absolute; right: 0px; top: 0px;">'.$this->text.'</a>';
 		echo '<form id="frm_img_select" action="'.$this->uploadUrl.'" method="POST" enctype="multipart/form-data"></form>';
 		echo '</div>';
 		echo '</div>';

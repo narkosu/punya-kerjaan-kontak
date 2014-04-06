@@ -18,8 +18,11 @@ class ImageController extends Controller
 
 	public function actionCreate()
 	{
+    $product = Products::model()->findByPk($_GET['product_id']);
+    
+    $this->layout = '//layouts/main_account';  
 		$model=new Image;
-
+    
 		if(isset($_POST['Image']))
 		{
 			$model->attributes=$_POST['Image'];
@@ -27,12 +30,13 @@ class ImageController extends Controller
 			if($model->save()) {
 				$folder = Yii::app()->controller->module->productImagesFolder; 
 				$model->filename->saveAs($folder . '/' . $model->filename);
-				$this->redirect(array('//shop/products/admin'));
+				$this->redirect(array('//shop/image/product/product_id/'.$product->product_id));
 			}
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
+       'product'=>$product
 		));
 	}
 
@@ -120,4 +124,5 @@ class ImageController extends Controller
 			Yii::app()->end();
 		}
 	}
+  
 }

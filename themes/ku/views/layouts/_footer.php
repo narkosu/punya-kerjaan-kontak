@@ -7,10 +7,7 @@
           <span >USAHA</span></a>. All rights reserved.
     </div>
     <div id="box-footer-r">
-      <a href="" target="_blank">
-      	<img src="<?php echo Yii::app()->theme->baseUrl; ?>/images/html_valid.png" alt="html valid" border="0" /></a>
-      <a href="http://jigsaw.w3.org/css-validator/check/referer" target="_blank">
-      	<img src="<?php echo Yii::app()->theme->baseUrl; ?>/images/css_valid.png" alt="css valid" border="0" /></a>
+      
     </div>
   </div>
 </div>

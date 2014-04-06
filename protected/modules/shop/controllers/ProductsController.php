@@ -174,9 +174,8 @@ class ProductsController extends Controller
 	{
 	  $this->layout='//layouts/main_account';	
 		$criteria=new CDbCriteria;
-    echo Yii::app()->user->getState("storeLogin")->id;
-		$criteria->compare('store_id',Yii::app()->user->getState("storeLogin")->id);
-
+    
+    $criteria->condition = "store_id = '".Yii::app()->user->getState("storeLogin")->id."'";
 		$model = Products::model()->findAll($criteria);
 		
 

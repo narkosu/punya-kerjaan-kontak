@@ -84,7 +84,7 @@ body {
     width:200px;
     margin: 10px 0px 10px 10px;
     border: 1px solid #d8d8d8;
-    padding: 10px 0px;
+    padding: 0px 0px;
     background: #fff;
     
 }
@@ -92,6 +92,15 @@ body {
 #main-container{
 	float:left;
 	width: 650px;
+}
+
+
+/* change avatar */
+.image-select-edit{
+    background:#fff;
+    border-left: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding:5px;
 }
 /*.left-content-company{
 	float:left;
@@ -460,8 +469,8 @@ input.btnfactory:hover { color: #c11e39; }
     width: 665px;
     margin-top: 10px;
     margin-left: 10px;
-    border: 1px solid #d8d8d8;
-    padding: 10px;
+    /*border: 1px solid #d8d8d8;*/
+    /*padding: 10px;*/
     background: #fff;
 }
 

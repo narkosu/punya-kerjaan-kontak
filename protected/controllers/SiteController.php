@@ -199,7 +199,10 @@ class SiteController extends Controller
 				Yii::app()->user->setFlash('success_confirm','Terima kasih telah bergabung dengan nolkm.com');
 				Yii::app()->user->setFlash('success_confirm_title','Konfirmasi keanggotaan nolkm');
 				$this->redirect(Yii::app()->createUrl('site/confirm'));
-			}			
+			}else{
+          echo 'error';
+          print_r($model->getErrors());
+      }			
 		}
 		// display the login form
 		$this->render('signup',array('model'=>$model));
@@ -240,7 +243,7 @@ class SiteController extends Controller
 	
 	public function actionConfirm()
 	{
-		$this->layout='mainfull';
+		$this->layout='mainhome';
 		
 		// display the login form
 		$this->render('confirm');

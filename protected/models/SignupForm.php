@@ -26,7 +26,7 @@ class SignupForm extends CFormModel
 	{
 		return array(
 			// username and password are required
-			array('username, password, email,first_name,reemail', 'required'),
+			array('username, password, email,reemail', 'required'),
 			array('email,reemail', 'email'),
 			
 			array('reemail', 'compare', 'compareAttribute'=>'email'),
