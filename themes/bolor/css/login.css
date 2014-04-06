@@ -1,0 +1,42 @@
+	
+#box-login{
+	margin: 60px auto;
+	width: 400px;
+	border: 1px solid #eee;;
+	padding: 20px;
+	background:#F9F9F9;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+	
+}
+#allbox-signup {
+	width:700px;
+	margin: 60px auto;
+}
+#allbox-signup #box-signup{
+	float:left;
+	
+	width: 400px;
+	border: 1px solid #1D525F;;
+	padding: 20px;
+}
+
+#sign-up-support{
+	float:right;
+	color:#1D525F;
+	line-height:22px;
+	font-size:14px;
+	width:200px;
+	background:#EBEBEB;
+	padding:20px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+}
+
+#box-signup .box-login-header, #box-login	.box-login-header{
+	font-weight:bold;
+	font-size:16px;
+	color:#1D525F;
+	padding-bottom:15px;
+	
+}

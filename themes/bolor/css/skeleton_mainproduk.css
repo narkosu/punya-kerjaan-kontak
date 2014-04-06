@@ -1,0 +1,40 @@
+.kotak-pesan-komentar {
+	position:absolute;z-index:9;
+	
+}
+.kotak-komentar{width:175px;/*position:absolute;*/}
+.kotak-pesan{width:175px;/*position:absolute;*/}
+
+.waypointarea {
+	border-radius: 5px;
+	/*background:#EAEAE3;*/
+	border:solid #DADFE5 1px;
+	margin:15px 0px;
+	
+}
+
+.waypointarea .waypoint{
+	padding:10px;
+	
+	display:inline-block;
+	
+	color:#0192B5;
+}
+
+.waypointarea .waypoint a{
+	
+	color:#0192B5;
+	font-weight:bold;
+}
+
+.waypointarea .waypoint.active,
+.waypointarea .waypoint.active a ,
+.waypointarea .waypoint.active a:visited, 
+.waypointarea .waypoint.active a:hover{
+	color:#fff;
+	/*border-radius: 5px;*/
+	text-decoration:none;
+	font-weight:bold;
+	background:#0192B5;
+	
+}

@@ -1,0 +1,14 @@
+#Options +FollowSymLinks
+#IndexIgnore */*
+RewriteEngine on
+
+RewriteBase /yii1.1.12/kontakusaha/	
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^admin/.* backend.php [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . index.phhgffsszxcvnqwertyuiiecho 'asdad';
+		die();echo 'asdad';
+		die();

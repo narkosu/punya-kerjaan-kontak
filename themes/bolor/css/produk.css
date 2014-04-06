@@ -1,0 +1,440 @@
+#kotak-keranjang-belanja{
+	border-top:2px solid #eee;
+	padding:10px 0px;
+	border-bottom:2px solid #eee;
+}
+#kotak-keranjang-belanja .kotak-keranjang-store {
+	border:1px solid #DADFE5;
+	padding:0px 0px 0px 0px;
+	border-radius: 5px 5px 5px 5px;
+	margin-bottom:10px;
+}
+.order-shipping-address, .order-detil-summary {
+	margin: 0px 0px 20px 0px ;
+	border: 1px solid rgb(234, 234, 227);
+	border-radius: 5px 5px 5px 5px;
+	color: #000;
+}
+
+.order-detil-summary table{
+	float:right;
+}
+.order-detil-summary table th{
+	font-weight:bold;
+	padding:0px 20px;
+}
+.order-detil-summary table td{
+	padding:5px 20px;
+}
+.order-detil-summary .order-summary-inline-details {
+    float: left;
+	padding:10px;
+	line-height:18px;
+    width: 185px;
+	color:#0192B5;
+	font-size:14px;
+	font-weight:bold;
+	
+}
+
+.order-detil-summary .shopping_cart{
+	width:100%;
+}
+
+.order-detil-summary .shopping_cart th{
+	font-weight:bold;
+	padding:0px 20px;
+	border-bottom:1px solid #eee;
+	text-transform:uppercase;
+}
+
+.order-detil-summary .shopping_cart td{
+	padding:20px 20px;
+	vertical-align:top;
+	border-bottom:1px solid #eee;
+}
+
+#address-ready, #existing-addresses{
+	-webkit-column-count: 4;
+	-webkit-column-gap: 10px;
+	-webkit-column-fill: auto;
+	
+	-moz-column-gap: 10px;
+	-moz-column-fill: auto;
+	
+	column-gap: 10px;
+	column-fill: auto;
+}
+
+
+#address-ready .address-row{
+	width: 200px;
+	display: inline-block;
+	background: #fff;
+	border: 1px solid #eee;
+	
+	margin: 0 2px 0px;
+	-webkit-column-break-inside: avoid;
+	-moz-column-break-inside: avoid;
+	column-break-inside: avoid;
+	
+	
+	
+	-webkit-transition: all .2s ease;
+	-moz-transition: all .2s ease;
+	-o-transition: all .2s ease;
+	transition: all .2s ease;
+}
+
+#address-ready .address-row h4.title{
+	margin:0px;
+	position: relative;
+	background: none repeat scroll 0% 0% #DADFE5;
+	padding: 10px 15px;
+}
+
+#address-ready .address-row .address-block,
+#address-ready .address-row .payment-block
+{
+	padding:10px;
+}	
+
+#address-ready .address-row .payment-block .row
+{
+	border-bottom:1px solid #DADFE5;
+	padding:5px 0px;
+}	
+
+	
+#existing-addresses .address-row{
+	width: 180px;
+	display: inline-block;
+	background: #fff;
+	border: 1px solid #eee;
+	
+	margin: 0 2px 0px;
+	-webkit-column-break-inside: avoid;
+	-moz-column-break-inside: avoid;
+	column-break-inside: avoid;
+	padding: 15px;
+	padding-bottom: 5px;
+	padding-top: 10px;
+	
+	
+	-webkit-transition: all .2s ease;
+	-moz-transition: all .2s ease;
+	-o-transition: all .2s ease;
+	transition: all .2s ease;
+
+}
+#existing-addresses  form{
+	margin:0px;
+}
+
+#existing-addresses .address-block{
+	margin-top:10px;
+	
+}
+
+#existing-addresses .address-row .papan-tombol{
+	border-top:1px solid #eee;
+	margin-top:10px;
+	padding:5px 0px;
+}
+
+
+#new-address h2{
+	font-size:18px;
+	padding:10px 10px;
+	background:#DADFE5;
+}
+
+
+#new-address-area {
+	margin:15px;
+}
+
+#new-address-area .row{
+	padding:5px 0px;
+}
+
+.order-shipping-address {
+	padding: 0px;
+	
+}
+
+.order-shipping-address h2{
+	margin:0px;
+	position: relative;
+	background: none repeat scroll 0% 0% #DADFE5;
+	padding: 10px 15px;
+}
+.order-shipping-address .body{
+padding:15px;
+}
+
+.buy-additional{
+	margin-bottom:10px;
+}
+
+
+.kotak-keranjang-store .namestore{
+	
+	font-size:18px;
+	padding:10px 10px;
+	background:#DADFE5;
+}
+
+.kotak-keranjang-store .kotak-pendukung{
+	vertical-align:top;
+	/*background:#FAFCFC;*/
+	padding:15px;
+	border-left:1px solid #DADFE5;
+}
+
+.kotak-keranjang-store .shopping_cart{
+	
+	width:100%;
+}
+.kotak-keranjang-store .shopping_cart td{
+	
+	vertical-align:top;
+}
+.kotak-keranjang-store .shopping_cart .descphoto{
+	border-right:1px solid #DADFE5;
+}
+.kotak-keranjang-store .shopping_cart .desccontent .row{
+	line-height:20px;
+	margin-bottom:10px;
+}
+.kotak-keranjang-store .shopping_cart .desccontent .title{
+	font-size:14px;
+	color:blue;
+}
+.kotak-keranjang-store .shopping_cart .desccontent{
+	padding:15px;
+}
+.kotak-keranjang-store .shopping_cart .rowitem{
+	border-bottom:1px solid #eee;
+}
+
+/* address */
+.kotak-keranjang-store  .address-row{
+	float:left;
+	width:180px;
+	margin:15px 0px 15px 15px;
+	padding:10px;
+	border:1px solid #eee;
+	
+}
+
+#papan-produk{
+	font: 14px/21px Arial, sans-serif;
+}
+
+#papan-produk .title{
+	font: 11px/14px Arial;
+	font-weight:bold;
+	
+	text-transform:uppercase;
+}
+#papan-produk .title a{
+	color:#000;
+	text-decoration:none;
+}
+
+#papan-produk .title a:hover{
+	color:#000;
+	text-decoration:none;
+}
+
+#papan-produk .product-overview-description{
+	font-family: "helvetica neue",arial,sans-serif;
+	font-size:11px;	
+	line-height:15px;
+	
+}
+
+
+.photo-produk img{
+	border-radius: 5px 5px 0px 0px;
+}
+
+.kotak-harga{
+	font-family: Georgia,arial,sans-serif;
+	font-size:16px;	
+	font-weight:bold;
+	color:red;
+}
+
+/* detil profuk */
+.detil-produk {
+	float:left;
+	text-align:justify;
+	line-height:21px;
+	width:610px;
+}
+.photo-utama{
+	float:left;
+	width:500px;
+}
+
+.photo-utama img{
+	border-radius: 10px;
+}
+
+.photo-thumb img{
+	border-radius: 20px;
+}
+
+.photo-thumb{
+	float:right;
+	width:100px;
+}
+
+.nophoto {
+	padding:10px;border:2px solid #eee;text-align:center;font-weight:bold;
+	border-radius: 10px 10px 0px 0px;
+	color:#da7c0c;
+}
+
+.kotak-pendukung-produk{
+	float:right;
+	width:270px;
+	border-radius: 5px;
+	
+
+	background: #fff;
+	border: 1px solid #AAA;
+	box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
+	margin: 0 2px 15px;
+	-webkit-column-break-inside: avoid;
+	-moz-column-break-inside: avoid;
+	column-break-inside: avoid;
+	padding: 15px;
+	padding-bottom: 5px;
+	background: -webkit-linear-gradient(45deg, #FFF, #F9F9F9);
+	opacity: 1;
+	
+	-webkit-transition: all .2s ease;
+	-moz-transition: all .2s ease;
+	-o-transition: all .2s ease;
+	transition: all .2s ease;
+}
+
+.kotak-pendukung-produk .kotak-pesan{
+
+	width:100%;
+	box-shadow:none;
+	padding:0px;
+	background:none;
+	margin:10px 0px;
+	border:none;
+}
+.kotak-pendukung-produk .kotak-pesan .input-prepend input{
+	
+	width:80%;
+	padding: 4px 5px;
+	height: 21px;
+}
+
+.kotak-pendukung-produk .kotak-pesan .input-prepend textarea{
+	width:80%;
+	padding: 4px 5px;
+	margin-top:0px;
+	height: 41px;
+}
+
+.kotak-pendukung-produk .kotak-komentar{
+	width:100%;
+	box-shadow:none;
+	padding:0px;
+	background:none;
+	margin:0px;
+	border:none;
+	
+}
+
+.tablelist{
+	margin:10px 0px;
+	width:100%;
+}
+.tablelist td{
+	
+	padding:5px 10px;
+	/*background:#F5F5F5;*/
+	border-bottom:1px solid #eee;
+	vertical-align:top;
+}
+.tablelist .colFirst{
+	width:10px;
+}
+
+.tablelist .col.smallimage{
+	width:40px;
+}
+.tablelist .col.smallimage img{
+	border-radius: 5px 5px;
+	width:25px;
+	height:auto;
+}
+
+/* form produk */
+#papanformproduk .row,
+#papanformspesifikasiproduk .row{
+	padding:5px 10px;
+}
+	
+#papanformproduk .row label,
+#papanformspesifikasiproduk .row label{
+	width:100px;
+	display:inline-block;
+	line-height:18px;
+}
+
+
+/* Front end */
+h2.price {
+	margin:1px;
+	font-weight:200;
+	font-size:25px;
+}
+
+.product-options  .kotak-amount{
+	padding:5px 15px 5px 0px;
+	/*border:1px solid #aaa;padding:5px 15px;
+	float:left;
+	*/
+}
+
+.product-options {
+	padding-top:0px;
+	padding-bottom:20px;
+}
+.produk-variasi {
+	padding:10px;
+	margin-bottom:10px;
+	border:1px solid #eee;
+}
+.produk-spesifikasi, .produk-shipping {
+	border:1px solid #eee;
+	padding:15px;
+	margin-bottom:20px;
+}
+
+/* admin */
+table.shipping_produk{
+width:100%;
+}
+
+table.shipping_produk td,
+table.shipping_produk th{
+padding:10px;
+border-bottom:1px solid #eee;
+}
+
+.kotak-info-shipping {
+	padding:10px;
+	border-bottom:1px solid #eee;
+}
+

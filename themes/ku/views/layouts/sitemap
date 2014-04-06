@@ -1,0 +1,4 @@
+main_account    : layout untuk account logged in
+    style       : style.css
+    url         :   - setting
+                    

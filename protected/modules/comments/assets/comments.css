@@ -1,0 +1,60 @@
+/* 
+    Document   : comments.css
+    Created on : 11 груд 2011, 19:41:11
+    Author     : segoddnja@gmail.com
+*/
+
+root { 
+    display: block;
+}
+
+
+.comments-list{
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.comments-list .comment-text{
+	line-height:14px;
+}
+
+.comments-list .comment-date{
+	color:#A1A1A1;
+	line-height:14px;
+	font-size:10px;
+}
+
+
+.comments-list .delete{
+    padding: 1px 5px;
+	position:absolute;
+	right:10px;
+	color:#AeAeAe;
+	
+}
+
+.comments-list .admin-panel{
+    /*border: solid 1px grey;
+    padding: 5px;
+	*/
+}
+
+.comments-list .comments-list{
+    padding-left: 20px;
+}
+
+.comments-list li{
+    margin: 5px 0;
+    background: #E5F1F4;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.comments-list li:nth-child(2n){
+    background: #F8F8F8;
+}
+
+.comments-list li .comment-header{
+    font-weight: bold;
+	line-height:14px;
+}

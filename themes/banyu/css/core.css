@@ -1,0 +1,138 @@
+html, body, div, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, ol, ul, li, form, fieldset, legend, label, table, header, footer, nav, section { 
+	margin: 0; 
+	padding: 0;
+	border: 0;
+	
+} 
+ol, ul { 
+	list-style: none; 
+}
+header, footer, nav, section, article, hgroup, figure {
+	display: block;	
+}
+legend {
+	display: none;
+}
+/************End Reset**************/
+body{
+	 font-family: Century Gothic,Helvetica,Arial;
+}
+
+
+
+#wrapper{
+	margin:0px auto;
+	/*margin:0px auto;
+	min-width:500px;
+	min-width:500px;
+	*/
+}
+#footer{
+	position: fixed;
+    bottom: 0;
+    
+    z-index: 1100;
+	border-bottom:solid 1px #eee;
+	background:#1e1e1e;
+	color:#eee;
+	min-width:500px;
+	width:100%;
+	
+	
+	/*margin:0px auto;
+	min-width:500px;
+	min-width:500px;
+	*/
+}
+
+#header{
+	position: fixed;
+    top: 0;
+    
+    z-index: 1100;
+	border-bottom:solid 1px #eee;
+	/*background:#1e1e1e;*/
+	background: -moz-linear-gradient(center top , #665D52 0%, #34302D 100%) repeat scroll 0 0 transparent;
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#665D52), to(#34302D));
+	color:#fff;
+	min-width:500px;
+	width:100%;
+	font-size:16px;
+    border-bottom: 1px solid #665D52;
+    box-shadow: 0 2px 5px #CCCCCC;
+    color: #FAFAFA;
+    overflow: hidden;
+    padding: 10px;
+    position: fixed;
+  
+    top: 0;
+   
+    z-index: 2000;
+	
+	/*margin:0px auto;
+	min-width:500px;
+	min-width:500px;
+	*/
+}
+#header .logo{
+	margin:0px auto;
+	
+	background:#fff;
+	min-width:500px;
+	width:500px;
+	/*margin:0px auto;
+	min-width:500px;
+	min-width:500px;
+	*/
+}
+#header #navigation ul{
+	margin:0px auto;
+	width:500px;
+}
+#header #navigation li{
+	float:left;
+	text-shadow: 1px 1px 1px #eee;
+	padding-right:10px;
+}
+
+#header #navigation li.lmenu {
+	
+	padding-top:5px;
+}
+
+#wrapper-footer{
+	margin:0px auto;
+	
+	background:#fff;
+	min-width:500px;
+	width:500px;
+	
+}
+
+#wrapper #container{
+	margin:0px auto;
+	margin-top:40px;
+	min-width:500px;
+	width:500px;
+}
+
+.lmenu{
+	cursor:pointer;
+}
+
+.lmenu:hover{
+	color:red;
+}
+.borderbottom{
+	clear:both;text-align:center;
+	border-top:solid 1px #ededed;
+}
+
+.hidebar {
+	display:none;
+	font-size:80%;
+}
+/* product */
+.list-view{
+	font-size:13px;
+}
