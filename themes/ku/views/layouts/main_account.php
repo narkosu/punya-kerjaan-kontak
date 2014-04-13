@@ -32,6 +32,10 @@
                             <a href="">Ganti Password</a>
                         </li>
                         <li>
+                            <a href="<?php echo Yii::app()->createUrl('mailbox/message/inbox')?>">Inbox</a>
+                        </li>
+                      
+                        <li>
                               <div style="padding:10px 0px;">PERUSAHAAN</div>
                         </li>
                         <li>

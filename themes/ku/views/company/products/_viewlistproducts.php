@@ -7,7 +7,22 @@ foreach ( (array) $dataProvider as $idx =>$data){
 	<div class="product-title">
 		<?php echo CHtml::link(CHtml::encode($data->title), array('products/view', 'id' => $data->product_id)); ?></div>
 	<div style="width:100%;background: #eee;">
-		<div style="float:left;margin-right:10px;"><img class="avatar" src="http://cdn.viddy.com/images/users/thumb/85ea5f42-2968-47bd-a9e8-0adfa40c28dc_150x150.jpg" style="width:25px"></div>
+		<div style="float:left;margin-right:10px;">
+        <?php $company = $data->shop_store->company; ?>
+        <?php 
+        echo 'hahha';
+        print_r($company);
+        echo $urlLogo = ( !empty($company->picture_id) ? 
+                        Yii::app()->baseUrl.'/images/'.
+                            Yii::app()->image
+                                ->renderVersion($company->picture_id, 'logo')
+                                ->urlpath : ''); 
+        ?>
+        <?php /*
+        <img class="avatar" src="http://cdn.viddy.com/images/users/thumb/85ea5f42-2968-47bd-a9e8-0adfa40c28dc_150x150.jpg" style="width:25px">
+         * 
+         */?>
+    </div>
 		<div style="float:left;">
 		<a rel="<?php echo Yii::app()->createUrl('members/profile/ajaxprofile/id/'.$data->shop_store->shop_name);?>" href="<?php echo Yii::app()->baseUrl?>/company/factory/view/id/<?php echo $data->shop_store->company->id?>" class="qtipsy">
 		<?php echo (isset($data->shop_store->shop_name) ? $data->shop_store->company->company_name : 'Noname')?></a>

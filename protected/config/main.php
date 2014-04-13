@@ -106,8 +106,8 @@ return array(
                 'class'=>'ImgManager',
                 'versions'=>array(
                         'small'=>array('width'=>120,'height'=>120),
-						'avatar'=>array('width'=>200,'height'=>250),
-						'logo'=>array('width'=>200,'height'=>250),
+                        'avatar'=>array('width'=>200,'height'=>250),
+                        'logo'=>array('width'=>200,'height'=>250),
                         'medium'=>array('width'=>320,'height'=>320),
                         'large'=>array('width'=>640,'height'=>640),
                 ),

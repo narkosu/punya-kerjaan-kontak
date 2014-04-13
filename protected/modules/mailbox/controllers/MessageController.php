@@ -2,7 +2,7 @@
 
 class MessageController extends Controller
 {
-	public $layout = '//layouts/mainuser';
+	public $layout = '//layouts/main_account';
 	public $defaultAction = 'inbox';
 	public $buttons = array( // Ex output: {count} messages have been {value}
 				'default'=>array('delete'=>'deleted','read'=>'marked read','unread'=>'marked unread'),
