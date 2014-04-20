@@ -2,6 +2,7 @@
 
 class Products extends CActiveRecord
 {
+  public $customSpecification;  
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -24,8 +25,15 @@ class Products extends CActiveRecord
 			$this->shipping['store_id'] = $this->store_id;
 			$this->shipping['product_id'] = $this->product_id;
 			ShippingProduct::model()->saveCollective($this->shipping);
+			
 		}	
-		
+    
+		if ( !empty($this->customSpecification )){
+			$this->customSpecification['product_id'] = $this->product_id;
+			ShopProductCustomSpecification::model()->saveCustom($this->customSpecification);
+			
+		}	
+    
 		return parent::afterSave();
 	}
 	
@@ -48,6 +56,7 @@ class Products extends CActiveRecord
 			'category' => array(self::BELONGS_TO, 'Category', 'category_id'),
 			'tax' => array(self::BELONGS_TO, 'Tax', 'tax_id'),
 			'images' => array(self::HAS_MANY, 'Image', 'product_id'),
+			'custom_spec' => array(self::HAS_MANY, 'ShopProductCustomSpecification', 'product_id'),
 			'shopping_carts' => array(self::HAS_MANY, 'ShoppingCart', 'product_id'),
 			'shop_store' => array(self::BELONGS_TO, 'ShopStore', 'store_id'),
 		);
@@ -128,6 +137,10 @@ class Products extends CActiveRecord
 		//ShippingProduct::model()->saveCollective($shipping);
 	}
 
+  public function setShopProductCustomSpecification($spec) {
+		$this->customSpecification = $spec;
+		//ShippingProduct::model()->saveCollective($shipping);
+	}
 	public function getVariations() {
 		$variations = array();
 		foreach($this->variations as $variation) {

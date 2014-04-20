@@ -109,7 +109,114 @@ class MessageController extends Controller
 		}
 	}
 	
-	public function actionNew()
+  
+  public function actionNew()
+	{
+		$this->module->registerConfig($this->getAction()->getId());
+		$cs = $this->module->getClientScript();
+		$cs->registerScriptFile($this->module->getAssetsUrl().'/js/compose.js');
+		$cs->registerScriptFile($this->module->getAssetsUrl().'/js/jquery.combobox.contacts.js');
+		$js = '$(".mailbox-compose").yiiMailboxCompose('.$this->module->getOptions().");";
+		$cs->registerScript('mailbox-js',$js,CClientScript::POS_READY);
+		if(!$this->module->authManager && (!$this->module->sendMsgs  || ($this->module->readOnly && !$this->module->isAdmin()) ))
+			$this->redirect(array('message/inbox'));
+		
+		if(isset($_POST['Mailbox']['to']))
+		{
+			$t = time();
+			$conv = new Mailbox();
+			$conv->subject = ($_POST['Mailbox']['subject'])? $_POST['Mailbox']['subject'] : $this->module->defaultSubject;
+			$conv->to = $_POST['Mailbox']['to'];
+			$conv->initiator_id = $this->module->getUserId();
+
+			// Check if username exist
+			if(strlen($_POST['Mailbox']['to'])>1)
+				$conv->interlocutor_id = $this->module->getUserId($_POST['Mailbox']['to']);
+			else
+				$conv->interlocutor_id = 0;
+			// ...if not check if To field is user id
+			if(!$conv->interlocutor_id)
+			{
+				if($_POST['Mailbox']['to'] && ($this->module->allowLookupById || $this->module->isAdmin()))
+					$username = $this->module->getUserName($_POST['Mailbox']['to']);
+				if(@$username) {
+					$conv->interlocutor_id = $_POST['Mailbox']['to'];
+					$conv->to = $username;
+				}
+				else {
+					// possible that javscript was off and user selected from the userSupportList drop down.
+					if(isset($_POST['ajax']['to']) && $this->module->getUserId($_POST['ajax']['to'])) {
+						$conv->to = $_POST['ajax']['to'];
+						$conv->initiator_id = $this->module->getUserId($_POST['ajax']['to']);
+					}
+					else
+						$conv->addError('to','User not found?');
+				}
+			}
+			
+			if($conv->interlocutor_id && $conv->initiator_id == $conv->interlocutor_id) {
+				$conv->addError('to', "Can't send message to self!");
+			}
+			
+			if(!$this->module->isAdmin() && $conv->interlocutor_id == $this->module->newsUserId){
+				$conv->addError('to', "User not found?");
+			}
+			
+			// check user-to-user perms
+			if(!$conv->hasErrors() && !$this->module->userToUser && !$this->module->isAdmin())
+			{
+				if(!$this->module->isAdmin($conv->to))
+					$conv->addError('to', "Invalid user!");
+			}
+			
+			$conv->modified = $t;
+			$conv->bm_read = Mailbox::INITIATOR_FLAG;
+			if($this->module->isAdmin())
+				$msg = new Message('admin');
+			else
+				$msg = new Message('user');
+			$msg->text = $_POST['Message']['text'];
+			$validate = $conv->validate(array('text'),false); // html purify
+			$msg->created = $t;
+			$msg->sender_id = $conv->initiator_id;
+			$msg->recipient_id = $conv->interlocutor_id;
+			if($this->module->checksums) {
+				$msg->crc64 = Message::crc64($msg->text); // 64bit INT
+			}
+			else
+				$msg->crc64 = 0;
+			// Validate
+			$validate = $conv->validate(null,false); // don't clear errors
+			$validate = $msg->validate() && $validate;
+			
+			if($validate)
+			{
+				$conv->save();
+				$msg->conversation_id = $conv->conversation_id;
+				$msg->save();
+				Yii::app()->user->setFlash('success', "Message has been sent!");
+				$this->redirect(array('message/inbox'));
+			}
+			else
+			{
+				Yii::app()->user->setFlash('error', "Error sending message!");
+			}
+		}
+		else{
+			$conv = new Mailbox();
+			if(isset($_GET['id']))
+				$conv->to = $this->module->getUserName($_GET['id']);
+			elseif(isset($_GET['to']))
+				$conv->to = $_GET['to'];
+			else
+				$conv->to = '';
+			$msg = new Message();
+		}
+		$this->render('new_compose',array('conv'=>$conv,'msg'=>$msg));
+	}
+  
+  
+	public function actionNewOld()
 	{
 		$this->module->registerConfig($this->getAction()->getId());
 		$cs = $this->module->getClientScript();

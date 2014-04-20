@@ -30,7 +30,7 @@ blockquote, q {
 body {
 	/*background: url(../images/bg-body.png) 0 0 repeat-x #fff;*/
 	margin: 0;
-	font-family: arial, sans-serif, halvetica;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 	background: #f1f1f1 !important;
 }
 /* global */
@@ -49,9 +49,10 @@ body {
 /******************************* content *************************/
 #container-company {
 	width: 100%;
+  margin-top: 10px;
 	padding:0px 0px 20px 0px;
-	background: #fff;
-	float: left;
+	/*background: #fff;*/
+	
 }
 
 #container-header-user{
@@ -176,6 +177,11 @@ body {
 	border-radius: 3px;
 }
 /* end company */
+/* listing */
+.grid-product{
+    border:1px solid #eee;
+    margin-bottom: 10px;
+}
 
 /* product */
 #papan-produk{
@@ -185,11 +191,13 @@ body {
 
 #detail-product{
 	padding:20px 20px;
+  background: #fff;
 }
+
 .product-images{
 	float:left;
 	width:620px;
-	border:1px solid #eee;
+	/*border:1px solid #eee;*/
 }
 .product-owner{
 	padding:5px 15px;

@@ -5,14 +5,13 @@ foreach ( (array) $dataProvider as $idx =>$data){
 <div class="row-product">
 	
 	<div class="product-title">
-		<?php echo CHtml::link(CHtml::encode($data->title), array('products/view', 'id' => $data->product_id)); ?></div>
+    <?php echo CHtml::link(CHtml::encode($data->title), array('products/view', 'id' => $data->product_id)); ?></div>
 	<div style="width:100%;background: #eee;">
-		<div style="float:left;margin-right:10px;">
+		<div style="float:left;margin-right:10px;overflow:hidden;width:32px;height:32px;">
         <?php $company = $data->shop_store->company; ?>
         <?php 
-        echo 'hahha';
-        print_r($company);
-        echo $urlLogo = ( !empty($company->picture_id) ? 
+        
+         $urlLogo = ( !empty($company->picture_id) ? 
                         Yii::app()->baseUrl.'/images/'.
                             Yii::app()->image
                                 ->renderVersion($company->picture_id, 'logo')

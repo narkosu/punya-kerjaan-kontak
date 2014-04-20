@@ -51,6 +51,32 @@ if($authNew) :
 <div id="papan-menukotakpesan">
 <div class="daftar-menu-mailbox icon-list"></div>
 <div class="compose-menu-mailbox"></div>
+<div class="mailbox-menu-folders ui-helper-clearfix">
+		<?php
+		if($authInbox):?>
+		<div id="mailbox-inbox" class="mailbox-menu-item <?php echo ($action=='inbox')? 'mailbox-menu-current' : '' ; ?>">
+			<a href="<?php echo $this->createUrl('message/inbox'); ?>">Inbox <span class="mailbox-new-msgs"><?php echo $newMsgs? '('.$newMsgs.')' : null ; ?></span></a>
+		</div>
+		<?php endif;
+		if($authSent) : ?>
+		<div  id="mailbox-sent" class="mailbox-menu-item <?php if($action=='sent') echo 'mailbox-menu-current '; ?>">
+			<a href="<?php echo $this->createUrl('message/sent'); ?>">Sent Mail</a>
+		</div>
+		<?php endif;
+		if($authTrash) : ?>
+		<div id="mailbox-trash" class="mailbox-menu-item <?php if($action=='trash') echo 'mailbox-menu-current '; ?>">
+			<a href="<?php echo $this->createUrl('message/trash'); ?>">Trash </a> 
+		</div>
+		<?php endif; ?>
+	</div>
+
+<?php
+if($authNew) :
+	?>
+	<div class="mailbox-menu-newmsg  ui-helper-clearfix" align="center">
+		<span><a class="btn" href="<?php echo $this->createUrl('message/new'); ?>">New Message</a></span>
+	</div>
+<?php endif; ?>
 <div class="inbox-menu-mailbox"></div>
 
 </div>

@@ -1017,3 +1017,29 @@ span.bangla, span.advisor { font-weight: bold; }
 .frontpage{
   margin-top:20px;
 }
+
+/* inbox */
+.mailbox-item {
+    
+}
+
+.msg-new{
+    
+} 
+.msg-new a{
+    color:#000;
+    font-weight: bold;
+}
+.msg-read{
+    
+} 
+
+.checkall, .uncheckall{
+    background: #fff;
+    padding: 10px 5px;
+}
+
+.btn-group{
+    border:1px solid #eee;
+    padding:0px 10px;
+}

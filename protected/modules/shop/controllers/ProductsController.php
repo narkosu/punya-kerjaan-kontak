@@ -36,14 +36,16 @@ class ProductsController extends Controller
 	public function actionView()
 	{
 		$this->layout = '//layouts/mainproduk';
+    
 		$this->render('detailproduk',array(
-			'model'=>$this->loadModel(),
+			'model' => $this->loadModel(),
 		));
 	}
 
 	public function actionCreate()
 	{
-		$model=new Products;
+		 $model=new Products;
+     
 
 		 $this->performAjaxValidation($model);
 		//print_r($_POST);
@@ -68,21 +70,28 @@ class ProductsController extends Controller
       
     $this->layout = '//layouts/main_account';  
 		$model= Products::model()->find("product_id = '".$id."' AND store_id ='".Yii::app()->user->getState("storeLogin")->id."'");
-
+    $customSpec = $model->custom_spec;
 		$this->performAjaxValidation($model);
 		
 		if(isset($_POST['Products']))
 		{
 			
 			$model->attributes=$_POST['Products'];
-			if(isset($_POST['Specifications']))
+			/*if(isset($_POST['Specifications']))
 				$model->setSpecifications($_POST['Specifications']);
+       
 			if(isset($_POST['Variations']))
 				$model->setVariations($_POST['Variations']);
 			if(isset($_POST['ShippingProduct'])){
 				$model->setShipping($_POST['ShippingProduct']);	
 			}	
-
+      * 
+      */
+      
+      if(isset($_POST['ShopProductCustomSpecification'])){
+				$model->setShopProductCustomSpecification($_POST['ShopProductCustomSpecification']);	
+			}	
+      
 			if($model->save()){
 				if($return == 'product')
 					$this->redirect(array('products/update', 'id' => $model->product_id));
@@ -94,6 +103,7 @@ class ProductsController extends Controller
 
 		$this->render('update',array(
 			'model'=>$model,
+        
 		));
 	}
 
@@ -122,10 +132,20 @@ class ProductsController extends Controller
 	public function actionIndex()
 	{	
 		$this->layout = '//layouts/mainproduk';
-		$dataProvider = Products::model()->findAll() ;
+    
+    $criteria   = new CDbCriteria;
+    $count      = Products::model()->count($criteria);
+    $pages      = new CPagination($count);
+
+    // results per page
+    $pages->pageSize    = 5;
+    $pages->applyLimit($criteria);
+    
+		$dataProvider = Products::model()->findAll($criteria) ;
 
 		$this->render('fullproduct',array(
-			'dataProvider'=>$dataProvider,
+			'dataProvider' => $dataProvider,
+      'pages' => $pages  
 		));
 	}
 

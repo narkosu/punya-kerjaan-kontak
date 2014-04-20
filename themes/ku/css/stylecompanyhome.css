@@ -75,10 +75,11 @@ body {
 }
 /* listin */
 .row-company{
-	padding:5px 0px;
+	/*padding:5px 0px;*/
 }
 .companytitle{
-    font-size:12px;
+    font-size:15px;
+    font-weight: 800 !important;
     text-transform: uppercase;
     -webkit-font-smoothing: antialiased;
 }

@@ -39,99 +39,141 @@ return $str;
 } ?>
 <div class="form">
 
-<?php $form=$this->beginWidget('CActiveForm', array(
-			'id'=>'products-form',
-			'enableAjaxValidation'=>true,
-			)); ?>
+    <?php $form=$this->beginWidget('CActiveForm', array(
+          'id'=>'products-form',
+          'enableAjaxValidation'=>true,
+          )); ?>
 
-<?php echo $form->errorSummary($model); ?>
+    <?php echo $form->errorSummary($model); ?>
 
-<div style="">
-    <div style="margin-bottom:20px;">
-        <div style="padding:10px;background:#f4f4f4;"> <?php echo Shop::t('Produk'); ?> </div>
-        <div class="row">
-        <?php /* echo $form->labelEx($model,'category_id'); ?>
-        <?php $this->widget('application.modules.shop.components.Relation', array(
-              'model' => $model,
-              'relation' => 'category',
-              'fields' => 'title',
-              'showAddButton' => false)); ?>
-        <?php echo $form->error($model,'category_id'); */?>
+    <div style="">
+        <div style="margin-bottom:20px;">
+            <div style="padding:10px;background:#f4f4f4;"> <?php echo Shop::t('Produk'); ?> </div>
+            <div class="row">
+            <?php /* echo $form->labelEx($model,'category_id'); ?>
+            <?php $this->widget('application.modules.shop.components.Relation', array(
+                  'model' => $model,
+                  'relation' => 'category',
+                  'fields' => 'title',
+                  'showAddButton' => false)); ?>
+            <?php echo $form->error($model,'category_id'); */?>
+            </div>
+
+            <div class="row">
+            <?php echo $form->labelEx($model,'title'); ?>
+            <?php echo $form->textField($model,'title',array('size'=>45,'maxlength'=>45)); ?>
+            <?php echo $form->error($model,'title'); ?>
+            </div>
+            
+            <div class="row">
+                <?php echo $form->labelEx($model,'price'); ?>
+                <?php echo $form->textField($model,'price',array('size'=>45,'maxlength'=>45)); ?>
+                <?php echo $form->error($model,'price'); ?>
+            </div>
+            
+            <div class="row">
+            <?php echo $form->labelEx($model,'description'); ?>
+            <?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
+            <?php echo $form->error($model,'description'); ?>
+            </div>
         </div>
-
-        <div class="row">
-        <?php echo $form->labelEx($model,'title'); ?>
-        <?php echo $form->textField($model,'title',array('size'=>45,'maxlength'=>45)); ?>
-        <?php echo $form->error($model,'title'); ?>
+        <div style="margin-bottom:20px;">
+            <div style="padding:10px;background:#f4f4f4;"> <?php echo Yii::t('ShopModule.shop', 'Spesifikasi'); ?> </div>
+            <?php if ( $model->custom_spec)
+                   foreach ($model->custom_spec as $spec ) { 
+            ?>
+                <div class="row">
+                    <?php echo $form->textField($spec,'specification_name['.$spec->id.']',array('value'=>$spec->specification_name)); ?>
+                    <?php echo $form->textField($spec,'specification_value['.$spec->id.']',array('value'=>$spec->specification_value)); ?>
+                </div>
+            <?php 
+                }
+            ?>
+            <div id="addLast"></div>
+            <div class="row">
+                <input value="" name="ShopProductCustomSpecification[specification_name][]" id="newShopProductCustomSpecification_specification_name" type="text">
+                <input value="" name="ShopProductCustomSpecification[specification_value][]" id="newShopProductCustomSpecification_specification_value" type="text">                
+                <span class="btn" id="new_spec">Tambah Baru</span>
+            </div>
         </div>
+    <?php /*    
+        <div style="margin-bottom:20px;">
+            <div style="padding:10px;background:#f4f4f4;"> <?php echo Yii::t('ShopModule.shop', 'Spesifikasi'); ?> </div>
 
-        <div class="row">
-        <?php echo $form->labelEx($model,'description'); ?>
-        <?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
-        <?php echo $form->error($model,'description'); ?>
-        </div>
-    </div>
-    
-    <div style="margin-bottom:20px;">
-        <div style="padding:10px;background:#f4f4f4;"> <?php echo Yii::t('ShopModule.shop', 'Spesifikasi'); ?> </div>
+            <div class="row">
+            <?php echo $form->labelEx($model,'price'); ?>
+            <?php echo $form->textField($model,'price',array('size'=>45,'maxlength'=>45)); ?>
+            <?php echo $form->error($model,'price'); ?>
+            </div>
 
-        <div class="row">
-        <?php echo $form->labelEx($model,'price'); ?>
-        <?php echo $form->textField($model,'price',array('size'=>45,'maxlength'=>45)); ?>
-        <?php echo $form->error($model,'price'); ?>
-        </div>
+        <?php foreach(ProductSpecification::model()->findAll() as $specification) { ?>
+            <div class="row">
+                <?php echo CHtml::label($specification->title, ''); ?>
+                <?php echo CHtml::textField("Specifications[{$specification->title}]",
+                $model->getSpecification($specification->title),array(
+                  'size'=>45,'maxlength'=>45)); ?>
+            </div>
+            <?php } ?>
 
-    <?php foreach(ProductSpecification::model()->findAll() as $specification) { ?>
-        <div class="row">
-            <?php echo CHtml::label($specification->title, ''); ?>
-            <?php echo CHtml::textField("Specifications[{$specification->title}]",
-            $model->getSpecification($specification->title),array(
-              'size'=>45,'maxlength'=>45)); ?>
         </div>
+        <?php if(!$model->isNewRecord) { ?>
+        <div style="margin-bottom:20px;">
+            <div style="padding:10px;background:#f4f4f4;"> <?php echo Shop::t('Article Variations'); ?> </div>
+            <div id="variations">
+
+            <table>
+                <?php 
+                printf('<tr><th>%s</th><th>%s</th><th colspan = 2>%s</th><th>%s</th></tr>',
+                    Shop::t('Specification'), 
+                    Shop::t('Value'), 
+                    Shop::t('Price adjustion'),
+                    Shop::t('Position'));
+
+
+                $i = 0;
+                foreach($model->variations as $variation) { 
+                  echo renderVariation($variation, $i); 
+                  $i++;
+                }
+
+                  echo renderVariation(null, $i); 
+             ?>
+           </table>	
+            <?php echo CHtml::button(Shop::t('Save specifications'), array(
+            'submit' => array(
+              '//shop/products/update',
+              'return' => 'product',
+              'id' => $model->product_id))); ?>
+            </div>
+
         <?php } ?>
 
+        */ ?>
+            <div class="row buttons">
+            <?php echo CHtml::submitButton($model->isNewRecord ?
+                Yii::t('ShopModule.shop', 'Create') 
+                : Yii::t('ShopModule.shop', 'Save')); ?>
+            </div>
+
+            <?php $this->endWidget(); ?>
+
+        </div><!-- form -->
     </div>
-    <?php if(!$model->isNewRecord) { ?>
-		<div style="margin-bottom:20px;">
-        <div style="padding:10px;background:#f4f4f4;"> <?php echo Shop::t('Article Variations'); ?> </div>
-        <div id="variations">
+<?php
 
-        <table>
-            <?php 
-            printf('<tr><th>%s</th><th>%s</th><th colspan = 2>%s</th><th>%s</th></tr>',
-                Shop::t('Specification'), 
-                Shop::t('Value'), 
-                Shop::t('Price adjustion'),
-                Shop::t('Position'));
+Yii::app()->clientScript->registerScript('new_product', '
+	jQuery("#new_spec").click(function(){
+		var spec_name = jQuery("#newShopProductCustomSpecification_specification_name").val();
+		var spec_val = jQuery("#newShopProductCustomSpecification_specification_value").val();
+    if ( spec_name != "" && spec_name != "" ){
+        var $new = \'<div class="row">\'+
+                    \'<input value="\'+spec_name+\'" name="ShopProductCustomSpecification[specification_name][]" id="newShopProductCustomSpecification_specification_name" type="text">\'+
+                    \'<input value="\'+spec_val+\'" name="ShopProductCustomSpecification[specification_value][]" id="newShopProductCustomSpecification_specification_value" type="text">\'+
+                 \'</div>\';
+        jQuery($new).insertBefore("#addLast");         
 
-
-            $i = 0;
-            foreach($model->variations as $variation) { 
-              echo renderVariation($variation, $i); 
-              $i++;
-            }
-
-              echo renderVariation(null, $i); 
-         ?>
-       </table>	
-        <?php echo CHtml::button(Shop::t('Save specifications'), array(
-				'submit' => array(
-					'//shop/products/update',
-					'return' => 'product',
-					'id' => $model->product_id))); ?>
-        </div>
-
-    <?php } ?>
-
-
-				<div class="row buttons">
-				<?php echo CHtml::submitButton($model->isNewRecord ?
-						Yii::t('ShopModule.shop', 'Create') 
-						: Yii::t('ShopModule.shop', 'Save')); ?>
-				</div>
-
-				<?php $this->endWidget(); ?>
-
-    </div><!-- form -->
-</div>
-</div>
+    }
+	});
+	
+');
+?>

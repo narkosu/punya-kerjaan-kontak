@@ -9,8 +9,19 @@ class DefaultController extends Controller
 	//public $mid;
 	public function actionIndex()
 	{
-    $companies = Factory::model()->findAll();
-		$this->render('companyindex',array('dotoc'=>'prefetch','companies'=>$companies));
+    $criteria   = new CDbCriteria;
+    $count      = Factory::model()->count($criteria);
+    $pages      = new CPagination($count);
+
+    // results per page
+    $pages->pageSize    = 5;
+    $pages->applyLimit($criteria);
+    
+    $companies = Factory::model()->findAll($criteria);
+		$this->render('companyindex',array(
+        'dotoc'=>'prefetch',
+        'companies'=>$companies,
+        'pages'=>$pages));
 	}
 	
   

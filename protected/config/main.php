@@ -149,6 +149,7 @@ return array(
 				/*'advisor/<action:\w+>'=>'company/default/<action>',
 				'usaha/<action:\w+>'=>'company/default/<action>',
 				'advisor/<action:\w+>/'=>'company/default/<action>/',*/
+        'company'=>'company/default/index',      
 				'company/setting'=>'company/factory/updateMyProfile',
 				'company/produk'=>'shop/products/company',
         'company/<action:\w+>'=>'company/factory/<action>',

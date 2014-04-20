@@ -67,6 +67,13 @@
 					<?php echo $form->textField($model,'company_name'); ?>
 					<?php echo $form->error($model,'company_name',array('id'=>'error-company_name')); ?>
 				</div>
+        
+        <div class="row">
+					<?php echo $form->labelEx($model,'tipe_bisnis'); ?>
+					<?php echo $form->textField($model,'tipe_bisnis'); ?>
+					<?php echo $form->error($model,'tipe_bisnis',array('id'=>'error-tipe_bisnis')); ?>
+				</div>
+        
 				<div class="row">
 					<?php echo $form->labelEx($model,'contact_person'); ?>
 					<?php echo $form->textField($model,'contact_person'); ?>

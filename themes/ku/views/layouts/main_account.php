@@ -32,7 +32,14 @@
                             <a href="">Ganti Password</a>
                         </li>
                         <li>
-                            <a href="<?php echo Yii::app()->createUrl('mailbox/message/inbox')?>">Inbox</a>
+                            <a href="<?php echo Yii::app()->createUrl('/mailbox/message/inbox')?>">Surat</a>
+                            
+                            <ul>
+                                <li><a href="<?php echo $this->createUrl('/mailbox/message/inbox'); ?>">Kotak Surat</a></li>
+                                <li><a href="<?php echo $this->createUrl('/mailbox/message/sent'); ?>">Surat Terkirim</a></li>
+                                <li><a href="<?php echo $this->createUrl('/mailbox/message/trash'); ?>">Kotak Sampah</a></li>
+                            </ul>
+                                
                         </li>
                       
                         <li>

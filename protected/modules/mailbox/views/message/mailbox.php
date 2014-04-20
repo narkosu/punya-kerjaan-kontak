@@ -8,6 +8,22 @@ $this->breadcrumbs=array(
 else
 	$this->breadcrumbs=array($this->module->id);
 
+if($this->module->authManager)
+{
+	$authNew = Yii::app()->user->checkAccess("Mailbox.Message.New");
+	$authInbox = Yii::app()->user->checkAccess("Mailbox.Message.Inbox");
+	$authSent = Yii::app()->user->checkAccess("Mailbox.Message.Sent");
+	$authTrash = Yii::app()->user->checkAccess("Mailbox.Message.Trash");
+}
+else
+{
+	$authNew = $this->module->sendMsgs && (!$this->module->readOnly || $this->module->isAdmin());
+	$authInbox = ( !$this->module->readOnly || $this->module->isAdmin() );
+	$authTrash = $this->module->trashbox && (!$this->module->readOnly || $this->module->isAdmin());
+	$authSent = $this->module->sentbox && (!$this->module->readOnly || $this->module->isAdmin());
+}
+
+
 //$this->renderpartial('_menu');
 
 if(isset($_GET['Message_sort']))
@@ -24,7 +40,7 @@ EOD;
 echo '<div id="mailbox-list" class="mailbox-list ui-helper-clearfix" sortby="'.$sortby.'">';
 
 $this->renderpartial('_flash');
-echo $dataProvider->getItemCount();
+//echo $dataProvider->getItemCount();
 
 if($dataProvider->getItemCount() > 0) {
 ?>
@@ -35,14 +51,23 @@ if($dataProvider->getItemCount() > 0) {
 	<?php
 		
 	if($dataProvider->getItemCount() > 1 && $this->getAction()->getId() != 'sent') : ?>
-		<div class="btn-group mailbox-checkall-buttonsx">
+		<div style="float:left;margin-bottom: 5px;" class="btn-group mailbox-checkall-buttonsx">
 			<button class="checkall" />Check All</button>
 			<button class="uncheckall" />Uncheck All</button>
 		</div>
-		
 	<?php
 	endif;
-/*
+  /*
+  if($authNew) :
+      ?>
+      <div style="float:left;margin-bottom: 5px;margin-left:5px" class="btn-group mailbox-checkall-buttonsx">
+        <div style="padding:11px;" ><a href="<?php echo $this->createUrl('message/new'); ?>">New Message</a></div>
+      </div>
+    <?php endif; 
+   * 
+   */ ?>
+   
+<?php /*
 $this->widget('zii.widgets.CListView', array(
     'id'=>'mailbox',
     'dataProvider'=>$dataProvider,

@@ -18,7 +18,8 @@ echo CHtml::image($path,
 		array(
 			'title' => $model->title,
 			'style' => 'margin-bottom: 10px;',
-			'width' => $width)
+			'width' => $width,
+			'max-width' => $maxWidth)
 		); ?>
 <?php 
 
