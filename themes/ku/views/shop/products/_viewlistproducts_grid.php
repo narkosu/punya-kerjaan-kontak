@@ -36,7 +36,7 @@
                                         <div class="product-overview-image">	
                                             <?php
                                             if ($data->images) {
-                                                $this->renderPartial('/image/view', array('thumb' => true, 'model' => $data->images[0]));
+                                                $this->renderPartial('/image/view', array('thumb' => true, 'model' => $data->images[0], 'size'=> '180x180'));
                                             } else {
                                                 echo CHtml::image(Shop::register('no-pic.jpg'));
                                             }

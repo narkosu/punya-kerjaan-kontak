@@ -105,6 +105,7 @@ return array(
 		 'image'=>array(
                 'class'=>'ImgManager',
                 'versions'=>array(
+                        'sosmall'=>array('width'=>75,'height'=>75),
                         'small'=>array('width'=>120,'height'=>120),
                         'avatar'=>array('width'=>200,'height'=>250),
                         'logo'=>array('width'=>200,'height'=>250),
@@ -112,6 +113,15 @@ return array(
                         'large'=>array('width'=>640,'height'=>640),
                 ),
         ),
+    'thumb'=>array(
+        'class'=>'ext.phpthumb.EasyPhpThumb',
+        'options'=>array(
+            'thumbnail'=>array(
+                '650x450'=>array('width'=>650,'height'=>450),
+                '180x180'=>array('width'=>180,'height'=>180),
+                )
+        )
+    ),  
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
@@ -123,9 +133,6 @@ return array(
  			'logging' => true,
  			'dryRun' => false
 		),
-		'thumb'=>array(
-            'class'=>'application.extensions.phpthumb.EasyPhpThumb',
-        ),
 		// uncomment the following to use a MySQL database
 		
 		'db'=>array(

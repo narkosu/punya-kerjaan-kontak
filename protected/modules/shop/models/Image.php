@@ -18,7 +18,8 @@ class Image extends CActiveRecord
 			array('title, filename, product_id', 'required'),
 			array('id, product_id', 'numerical', 'integerOnly'=>true),
 			array('title, filename', 'length', 'max'=>45),
-			//array('filename' => 'file', 'types' => 'png,gif,jpg,jpeg'),
+			array('created_at', 'date', 'format'=>'yyyy-M-d H:m:s'),
+			array('filename', 'file', 'types' => 'png,gif,jpg,jpeg'),
 			array('id, title, filename, product_id', 'safe', 'on'=>'search'),
 		);
 	}

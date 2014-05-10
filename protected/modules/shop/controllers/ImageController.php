@@ -19,19 +19,72 @@ class ImageController extends Controller
 	public function actionCreate()
 	{
     $product = Products::model()->findByPk($_GET['product_id']);
-    
+    $now = new \DateTime;
     $this->layout = '//layouts/main_account';  
 		$model=new Image;
     
 		if(isset($_POST['Image']))
 		{
-			$model->attributes=$_POST['Image'];
-			$model->filename = CUploadedFile::getInstance($model, 'filename');
-			if($model->save()) {
-				$folder = Yii::app()->controller->module->productImagesFolder; 
-				$model->filename->saveAs($folder . '/' . $model->filename);
-				$this->redirect(array('//shop/image/product/product_id/'.$product->product_id));
-			}
+        Yii::app()->thumb->setThumbsDirectory('/productimages');
+        $folder = Yii::getPathOfAlias('webroot')."/productimages";
+        $folderDate = $now->format('Y/m/d');
+        $folder_destination = $folder.'/'.$folderDate;
+        @mkdir($folder_destination, 0777, true);
+        
+			  $model->attributes=$_POST['Image'];
+        $model->filename = CUploadedFile::getInstance($model, 'filename');
+        $model->created_at = $now->format('Y-m-d H:i:s'); 
+        if($model->save()) {
+            @mkdir($folder_destination.'/o', 0777, true);
+            //$folder = Yii::app()->controller->module->productImagesFolder.'/'; 
+            $folder = $folder_destination.'/o'; 
+            $time = time();
+            $newfilename = $time.'.'.$model->filename->getExtensionName();
+            $extension = $model->filename->getExtensionName();
+            $model->filename->saveAs($folder . '/' . $newfilename); 
+            $model->filename = $newfilename;
+            $model->save();
+            $loadImage = Yii::app()->thumb
+                        ->load($folder.'/'.$newfilename);
+            $optionImage = Yii::app()->thumb->options;
+            
+            chmod($folder_destination,0777);
+            $metaThumb = array();
+            if (!empty($optionImage)){
+                foreach( $optionImage['thumbnail'] as $typeThumbnail => $value ){
+                  $newThumbnail = $loadImage->resize($value['width'],$value['height']); 
+                  $resolution = $value['width']."x".$value['height'];
+                 
+                  $newThumbnail->save(  $folderDate.'/'.
+                                        $time."_".$resolution.
+                                        ".".$extension, strtoupper($extension)
+                                    );
+                  $metaThumb[$resolution] = $resolution;
+                }
+            }
+            chmod($folder_destination,0755);
+            $model->metas = json_encode($metaThumb);
+            $model->save();
+            /*->resize(650,450)
+            ->save($folder_destination.'/'.$time."_650x450.".$extension, strtoupper($extension));
+             * 
+             */
+            /* save to info thumbnail */
+            
+            /* make thumbnail */
+            $this->redirect(array('//shop/image/product/product_id/'.$product->product_id));
+        }
+        
+        
+                
+        /*
+        Yii::app()->thumb
+            ->load(Yii::getPathOfAlias('webroot')."/productimages/".$filename)
+            ->crop($area['x'],$area['y'],$area['width'],$area['height'])
+            ->save($area['name'].".gif", "GIF");
+        */    
+      
+        
 		}
 
 		$this->render('create',array(

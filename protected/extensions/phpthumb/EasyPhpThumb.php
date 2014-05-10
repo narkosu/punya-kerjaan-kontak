@@ -3,6 +3,7 @@ class EasyPhpThumb extends CApplicationComponent {
 
 	private $image;
 	private $thumbsDirectory;
+  public $options = array();
 	
 	public function load($imagePath){
 		$image = PhpThumbFactory::create($imagePath);
@@ -48,7 +49,7 @@ class EasyPhpThumb extends CApplicationComponent {
 			$format = $this->image->getFormat();
 		else {
 			$format = strtoupper($format);
-			if (array_search($format, array('GIF','JPG', 'PNG'))==null) {
+			if (array_search($format, array('GIF','JPEG','JPG', 'PNG'))==null) {
 				throw new Exception("Given format not found in allowed (GIF, JPG, PNG) - received ".$format);
 			}
 		}
@@ -59,6 +60,10 @@ class EasyPhpThumb extends CApplicationComponent {
 		$this->image->show();
 	}
 	
+  public function getOption(){
+      return Yii::app()->thumb->options;
+  }
+  
 	public function setThumbsDirectory($relPath){
 		
 		$webrootDir = YiiBase::getPathOfAlias('webroot');
@@ -82,6 +87,7 @@ class EasyPhpThumb extends CApplicationComponent {
 	
 	public function init() {
 		parent::init();
+    
 		include_once('ThumbLib.inc.php');
 	}
 	

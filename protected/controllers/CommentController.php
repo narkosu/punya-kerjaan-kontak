@@ -128,7 +128,5 @@ class CommentController extends Controller
 		return $this->_model;
 	}
 
-	function thankyou(){
-	    Yii::app()->
-	}
+
 }

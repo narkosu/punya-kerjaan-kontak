@@ -9,7 +9,16 @@ foreach ( (array) $dataProvider as $idx =>$data){
 			<?php //echo $data->getImage();?>
 		<?php 
 			if($data->images){
-				$this->renderPartial('application.modules.shop.views.image.view', array('custom'=>true,'dWidth'=>145,'thumb' =>true, 'model' => $data->images[0]));
+          
+				$this->renderPartial('application.modules.shop.views.image.view', 
+                        array(
+                            'custom'=> true,
+                            'dWidth'=> 145,
+                            'thumb' =>true, 
+                            'model' => $data->images[0],
+                            'size'  => '180x180'
+                            )
+                        );
 			}else {
 				echo CHtml::image(Shop::register('no-pic.jpg'));
 			}

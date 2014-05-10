@@ -23,7 +23,9 @@ $this->breadcrumbs=array(
         if( !empty($images) ) {
             foreach($images as $image) {
         ?>     
-            <div style="padding:10px 0px;border-bottom: 1px solid #eee;"><?php echo $image->title?></div>
+            <div style="padding:10px 0px;border-bottom: 1px solid #eee;">
+                <?php echo $image->title?>
+            </div>
             <div style="padding-top: 10px;">
                 <div style="float:left">
                     <?php $this->renderPartial('view', array('model' => $image,'thumb'=>1));?>
